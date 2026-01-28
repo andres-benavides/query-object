@@ -49,10 +49,14 @@ releases.each do |release|
   # Associate the primary artist with the release
   release.artists << primary_artist
 
+  # Ensure each release has multiple artists.
+  secondary_artist = artists.reject { |a| a.id == primary_artist.id }.sample
+  release.artists << secondary_artist if secondary_artist
+
   # 30% chance of adding a featured artist (collaboration)
-  if rand < 0.3 && artists.length > 1
-    featured_artist = artists.reject { |a| a.id == primary_artist.id }.sample
-    release.artists << featured_artist unless release.artists.include?(featured_artist)
+  if rand < 0.3 && artists.length > 2
+    featured_artist = artists.reject { |a| [primary_artist.id, secondary_artist&.id].include?(a.id) }.sample
+    release.artists << featured_artist if featured_artist
   end
 end
 

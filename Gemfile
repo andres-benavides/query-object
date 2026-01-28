@@ -12,6 +12,8 @@ gem "pg"
 gem "puma", "~> 3.11"
 gem "rails", "~> 7.0.0"
 gem "bootsnap", ">= 1.4.2", require: false
+gem "jbuilder"
+gem "kaminari"
 
 group :development, :test do
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
