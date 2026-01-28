@@ -1,6 +1,8 @@
 RSpec.describe Release do
-
-  it "creates a release" do
-    expect { FactoryBot.create(:release) }.to change(Release, :count).by(1)
+  it "requires name and released_at" do
+    release = Release.new(name: nil, released_at: nil)
+    expect(release).not_to be_valid
+    expect(release.errors[:name]).to be_present
+    expect(release.errors[:released_at]).to be_present
   end
 end

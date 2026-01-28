@@ -1,9 +1,7 @@
 RSpec.describe Album do
-
-  it "creates an album" do
-    artist = FactoryBot.create(:artist, name: "The Beatles")
-    release = FactoryBot.create(:release, name: "Abbey Road")
-    expect { FactoryBot.create(:album, artist: artist, release: release) }
-      .to change(Album, :count).by(1)
+  it "requires a name" do
+    album = Album.new(name: nil)
+    expect(album).not_to be_valid
+    expect(album.errors[:name]).to be_present
   end
 end

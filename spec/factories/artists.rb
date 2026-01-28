@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :artist do
-    name { "The Beatles" }
+    name { Faker::Music.band }
   end
 end

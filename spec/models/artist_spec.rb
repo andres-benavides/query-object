@@ -1,7 +1,7 @@
 RSpec.describe Artist do
-
-  it "creates an artist" do
-    expect { FactoryBot.create(:artist, name: "The Beatles") }
-      .to change(Artist, :count).by(1)
+  it "requires a name" do
+    artist = Artist.new(name: nil)
+    expect(artist).not_to be_valid
+    expect(artist.errors[:name]).to be_present
   end
 end
